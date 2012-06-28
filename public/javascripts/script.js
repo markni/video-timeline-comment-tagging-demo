@@ -132,12 +132,17 @@ $(document).ready(function () {
 			console.log("Post resposne:"); console.dir(data); console.log(textStatus); console.dir(jqXHR);
 			if(data){
 				//if we created new comment successfully, it will return what we just created, render them on page
-
+                
+                if (data.errors){$('#msg').html('data.message');}
+                else{
 				var position = (data.start / myPlayer.duration()) * 980;
 				insertMarker(position,data);
 				prependComment(data);
 				$('#make_comment').slideDown();
-				myPlayer.play();
+				myPlayer.play();               
+                }
+
+
 			}
 		});
 
