@@ -15,4 +15,8 @@ var Comment = new Schema({
 	modified:{ type:Date, default:Date.now } //auto insert, don't worry about this
 });
 
+Comment.path('comment').validate(function (v) {
+  return v.length > 5;
+}, 'comment is too short'); 
+
 exports.CommentModel = mongoose.model('Comment', Comment);

@@ -64,7 +64,8 @@ app.get('/api/comments', function (req, res) {
 
 //post a new comment
 app.post('/api/comments', function (req, res) {
-	var comment;
+	var self = this;
+    var comment;
 	console.log("POST: ");
 	console.log(req.body);
 	comment = new CommentModel({
@@ -74,16 +75,20 @@ app.post('/api/comments', function (req, res) {
 		end:req.body.end,
 		comment:req.body.comment
 	});
+    
 
-	comment.save(function (err) {
+	return comment.save(function (err) {
+    
 		if (!err) {
 			return console.log("created");
+            res.send(comment);
 		} else {
-			return console.log(err);
+			return res.send(err);
 		}
 	});
-	return res.send(comment);
+	 
 });
+
 
 
 //get a comment by id
