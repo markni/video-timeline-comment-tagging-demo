@@ -133,7 +133,7 @@ $(document).ready(function () {
 			if(data){
 				//if we created new comment successfully, it will return what we just created, render them on page
                 
-                if (data.errors){$('#msg').html('data.message');}
+                if (data.errors){$('#msg').html(data.message);}
                 else{
 				var position = (data.start / myPlayer.duration()) * 980;
 				insertMarker(position,data);
