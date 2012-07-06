@@ -157,7 +157,34 @@ app.post('/mailer', function (req, res) {
 	return res.send(mail);
 });
 
+app.post('/api/resources', function(req, res) {
+	console.log("uploading shit");
+	console.log(req.files);
+	console.log(req.body);
 
+	var serverPath = '/files/' + req.files.userPhoto.name;
+
+	require('fs').rename(
+		req.files.userPhoto.path,
+		'public' + serverPath,
+		function(error) {
+			if(error) {
+				console.log(error);
+				res.send({
+
+					error: 'Ah crap! Something bad happened'
+				});
+				return;
+			}
+			console.log(serverPath);
+			res.send({
+				path: serverPath,
+				size: req.files.userPhoto.size,
+				type: req.files.userPhoto.type
+			});
+		}
+	);
+});
 
 
 app.listen(4444, function () {

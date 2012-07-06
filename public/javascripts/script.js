@@ -28,7 +28,7 @@ $(document).ready(function () {
 				//call the api to get all the comments
 
 				console.log("Get resposne:");
-				console.dir(data);
+//				console.dir(data);
 				if(data){
 					// if we have some results returned, render them on page
 
@@ -51,7 +51,7 @@ $(document).ready(function () {
 
 				//TODO: error handling
 				console.log(textStatus);
-				console.dir(jqXHR);
+//				console.dir(jqXHR);
 			});
 
 
@@ -119,7 +119,7 @@ $(document).ready(function () {
 		}
 	});
 
-	$('form').bind('submit',function(){
+	$('#comment_form').bind('submit',function(){
 		//on form submit, gather all the data of the form and do AJAX request
 		var data = {}
 		data.start = $('#make_comment_time').attr('data-time');
@@ -151,6 +151,49 @@ $(document).ready(function () {
 		return false;
 
 	})
+
+
+
+
+	//////////////////////
+
+
+
+	status('Choose a file :)');
+
+	// Check to see when a user has selected a file
+
+	$('#uploadForm').submit(function() {
+		status('uploading the file ...');
+
+		$(this).ajaxSubmit({
+
+			error: function(xhr) {
+				status('Error: ' + xhr.status);
+			},
+
+			success: function(response) {
+
+				if(response.error) {
+					status('Opps, something bad happened');
+					return;
+				}
+
+				var imageUrlOnServer = response.path;
+
+				status('Success, file uploaded to:' + imageUrlOnServer+ '   file size is '+response.size + '  file type is ' + response.type);
+				var src = 'http://docs.google.com/gview?url='+'http://142.58.199.133:4444'+imageUrlOnServer+'&embedded=true';
+				$('#doc').attr('src',src);
+				console.log(src);
+				$('body').prepend('<a href="'+'https://docs.google.com/gview&url='+'http://142.58.199.133:4444'+imageUrlOnServer+'" target="_blank">click here</a>');
+				// $('<img/>').attr('src', imageUrlOnServer).appendTo($('body'));
+			}
+		});
+
+		// Have to stop the form from submitting and causing
+		// a page refresh - don't forget this
+		return false;
+	});
 
 
 
@@ -195,5 +238,7 @@ function prependComment(data){
 	$('#comments').prepend(comment);
 }
 
-
+function status(message) {
+	$('#status').text(message);
+}
 

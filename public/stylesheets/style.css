@@ -227,6 +227,12 @@ input#make_comment_context {
 	padding: 10px;
 }
 
+/*message box*/
+
+#msg {
+    /*display:none;*/
+}
+
 /*videojs player style overwrite*/
 
 .vjs-default-skin .vjs-big-play-button, .vjs-default-skin div.vjs-big-play-button span {
@@ -235,4 +241,11 @@ input#make_comment_context {
 
 .video-js {
 	background: transparent;
+}
+
+
+#doc{
+	margin: 10px 0px 0px 0px;
+	width:600px;
+	height:500px;
 }

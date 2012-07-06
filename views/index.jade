@@ -1,5 +1,16 @@
 div#wrap
+
+	iframe#doc(src="http://docs.google.com/gview?url=http://142.58.199.133:4444/files/computer-for-21-century.pdf&embedded=true", frameborder="0")
 	div#msg
+	div#status
+	form(id="uploadForm",enctype="multipart/form-data",action="/api/resources",method="post")
+		input(type="text",name="title",id="title",placeholder="title")
+		input(type="text",name="description",id="description",placeholder="description")
+		input(type="file",name="userPhoto",id="userPhotoInput")
+		input(type="submit",value="submit")
+
+	img#uploadImage
+
 	video#player.video-js.vjs-default-skin(controls="controls",preload="auto",width="980",height="408",data-setup="{}")
 		source(src="http://netaba.re/tag/1.mp4",type="video/mp4")
 		source(src="http://nagi.ca/tag/2.mp4",type="video/mp4")
@@ -17,7 +28,7 @@ div#wrap
 		button#btn_show_comment  Tag a Moment
 		button#btn_show_share  Share a Slice
 	div#make_comment
-		form
+		form#comment_form
 			input#make_comment_time(type="text",disabled="disabled",placeholder="00:00",data-time="0")
 			button#btn_make_comment_time(title="Get Current Time") ↡
 			input#make_comment_context(type="text",placeholder="Type your comment here and click submit")

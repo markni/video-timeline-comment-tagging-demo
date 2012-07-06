@@ -29,6 +29,12 @@ A few things that are useful in this application:
 
 ## Further Reading
 
+		form
+			input#make_comment_time(type="text",disabled="disabled",placeholder="00:00",data-time="0")
+			button#btn_make_comment_time(title="Get Current Time") ↡
+			input#make_comment_context(type="text",placeholder="Type your comment here and click submit")
+			button#btn_make_comment_submit(type="submit") Submit
+
 1. if you like object modeling tool for MYSQL, see [Sequelize](http://www.sequelizejs.com/)
 
 2. a mode detailed tutorial: [Develop a RESTful API Using Node.js With Express and Mongoose](http://pixelhandler.com/blog/2012/02/09/develop-a-restful-api-using-node-js-with-express-and-mongoose/)
