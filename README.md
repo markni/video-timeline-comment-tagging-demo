@@ -1,3 +1,5 @@
+Just some experiments for school project
+
 ## Highlights
 
 A few things that are useful in this application:
